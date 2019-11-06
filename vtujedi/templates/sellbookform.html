@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <a href="/">
+            < back</a> <br>
+                <form action="/sellbook/{{user.username}}/" class="form-group" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="jumbotron col-md-6 ml-auto mr-auto">
+                        <h4 style="text-align: center">Sell book</h4>
+                        <label>Upload Book Image</label>
+                        <input type="file" accept="image/*" name="book_img" placeholder="Choose Image" class="form-control"
+                            style="border: solid lightgrey 1px">
+
+                        <label>Book Title</label>
+                        <input type="text" name="book_title" placeholder="Enter Book Title" class="form-control"
+                            style="border: solid lightgrey 1px">
+
+                        <label>Book Description</label>
+                        <textarea name="book_description" id="" cols="30" rows="5" placeholder="Enter Description"
+                            class="form-control" style="border: solid lightgrey 1px"></textarea>
+
+                        <label>Book Price</label>
+                        <input type="number" name="book_price" class="form-control" style="border: solid lightgrey 1px">
+                        <label>Book Branch</label>
+                        <select name="book_branch" id="bookbranch" class="custom-select">
+                            {% for branch in branches %}
+                            <option value="{{branch.id}}">{{branch.branch_name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Book Semester</label>
+                        <select name="book_sem" id="booksem" class="custom-select">
+                            {% for semm in sem %}
+                            <option value="{{semm.id}}">{{semm.semester}}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                    
+                        <br>
+
+                        <button type="submit" class="btn btn-md btn-primary">Sell </button>
+
+                    </div>
+                </form>
+    </div>
+</body>
+
+</html>

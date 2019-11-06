@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left:25px; padding-right:25px;  ">
+        <a class="navbar-brand" href="/home/{{ user.username }}/">VtuJedi</a>
+        <div id="navbarSupportedContent" style="display: flex; margin-left:auto;">
+            <a class="nav-item nav-link" href="/sellbook/{{ user.username }}">Wanna Sell?</a>
+            <a class="nav-item nav-link" href="/logout/">Logout</a>
+            <a class="nav-item nav-link" href="/cart/{{user.username}}/">Cart</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3>Your account</h3>
+        <form action="/edit/{{user.username}}/" method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            <input type="text" class="form-control" name="username" value="{{user.username}}" disabled>
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" value="{{user.email}}">
+            <label>address </label>
+            <textarea type="text" class="form-control" name="user_address"
+                value="{{userdetail.user_address}}">{{userdetail.user_address}}</textarea>
+            <label>Phone</label>
+            <input type="text" class="form-control" name="user_phone" value="{{userdetail.user_phone}}">
+            <label for="user_branch">Your Branch</label>
+            <select name="user_branch"  class="custom-select">
+                {% for branches in branch %}
+                <option value="{{branches.id}}">{{branches.branch_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="user_sem">Your Semester</label>
+            <select name="user_sem"  class="custom-select">
+                {% for semm in sem %}
+                <option value="{{semm.id}}">{{semm.semester}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <a type="submit" href="/edit/{{user.username}}/" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+        <h4 style="text-align: center;">Payment Methods</h4>
+    <div class="container" style="display: flex;">
+            
+
+        <div class="container">
+            
+
+            <div class="jumbotron">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="payment" value="card"
+                                aria-label="Radio button for following text input">
+                            <h6>Credit/Debit</h6>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="payment" value="netbanking"
+                                aria-label="Radio button for following text input">
+                            <h6>NetBanking</h6>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="payment" value="upi"
+                                aria-label="Radio button for following text input">
+                            <h6>UPI/paytm/phonepe/gpay</h6>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+
+                        <th scope="col">#</th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Book Quantity</th>
+                        <th scope="col">X</th>
+                        <th scope="col">Price</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for book in cart %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{{book.item}}</td>
+                        <td>{{book.quantity}}</td>
+                        <td></td>
+                        <td>{{book.item.book_price}}₹</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h5 style="text-align: center;">Total price is {{total}}₹</h5>
+            <br>
+            <a href="/placeorder/{{user.username}}/" class="btn btn-primary btn-md btn-block">Place Order</a>
+        </div>
+    </div>
+</body>
+
+</html>

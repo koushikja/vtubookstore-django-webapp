@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="/">
+            < back</a> <br>
+                <form action="/signup/" class="form-group" method="POST">
+                    {% csrf_token %}
+                    <div class="jumbotron col-md-6 ml-auto mr-auto">
+                        <h4 style="text-align: center">SignUp</h4>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" placeholder="Enter Username" class="form-control"
+                            style="border: solid lightgrey 1px">
+
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" class="form-control"
+                            style="border: solid lightgrey 1px">
+
+                        <label for="user_address">Address</label>
+                        <textarea name="user_address" id="" cols="30" rows="5" placeholder="Enter address"
+                            class="form-control" style="border: solid lightgrey 1px"></textarea>
+
+                        <label for="user_phone">Phone No</label>
+                        <input type="text" name="user_phone" class="form-control" style="border: solid lightgrey 1px">
+                        <label for="user_branch">Your Branch</label>
+                        <select name="user_branch" id="userbranch" class="custom-select">
+                            {% for branch in branches %}
+                            <option value="{{branch.id}}">{{branch.branch_name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="user_sem">Your Semester</label>
+                        <select name="user_sem" id="usersem" class="custom-select">
+                            {% for semm in sem %}
+                            <option value="{{semm.id}}">{{semm.semester}}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" style="border: solid lightgrey 1px">
+                        <br>
+
+                        <button type="submit" class="btn btn-md btn-primary">SIGN UP </button>
+
+                    </div>
+                </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

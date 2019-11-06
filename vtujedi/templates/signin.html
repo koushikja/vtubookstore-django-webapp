@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <a href="/">
+            < back</a> <form class="form-group" action="/login/" method="POST">
+                {% csrf_token %}
+                <br>
+                <div class="jumbotron col-md-4 ml-auto mr-auto">
+                    <h4 style="text-align: center">Login</h4>
+                    <label for="username"><b>Username</b></label>
+                    <input class="form-control" type="text" placeholder="Enter Username" name="username" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
+                    <br>
+                    <button class="btn btn-md btn-primary" type="submit">Login</button>
+                </div>
+                </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/css/home.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="{% static '/js/index.js' %}"></script>
+</head>
+
+<body>
+    {% csrf_token %}
+    <!-- NavBar with jinja  -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left:25px; padding-right:25px;  ">
+        {% if userinfo.is_authenticated %}
+        <a class="navbar-brand" href="/home/{{ user.username }}/">VtuJedi</a>
+        {% else %}
+        <a class="navbar-brand" href="/">VtuJedi</a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="form-inline my-2 my-lg-0" style="margin-left:auto;margin-right:auto;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                Search
+            </button>
+        </form>
+        <div id="navbarSupportedContent" style="display: flex;">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="/sellbook/{{ user.username }}/">Wanna Sell?</a>
+            <a class="nav-item nav-link" href="/account/{{ user.username }}/">{{user.username}}</a>
+            <a class="nav-item nav-link" href="/logout/">Logout</a>
+            <a class="nav-item nav-link" href="/cart/{{user.username}}/">Cart</a>
+            {% else %}
+            <a class="nav-item nav-link" href="/login/">LogIn</a>
+            <a class="nav-item nav-link" href="/signup/">SignUp</a>
+            {% endif %}
+        </div>
+    </nav>
+    <!-- NavBar closing -->
+    <br />
+    <!-- {% for book in books %}
+    {{book.book_title}}
+    {% endfor %} -->
+    <!-- card implementation -->
+
+    <br />
+    <div class="container" style="display: flex;">
+        <!-- Section start-->
+        <div class="mr-auto p-2">
+            <!-- {% for branch in branches %}
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            {{branch.branch_name}}
+                        </button>
+                    </h2>
+                </div>
+                {% for sem in sems %}
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                data-parent="#accordionExample">
+                <div class="card-body">
+                    {{sem.semester}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %} -->
+        </div>
+
+        <!-- Section End-->
+        <div class="container">
+            <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+                {% for book in books %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ book.book_img.url }}" class="card-img-top" />
+                    <div class="card-body">
+                        <a href="/showbook/{{ book.id }}/">
+                            <h5 class="card-title">{{ book.book_title }}</h5>
+                        </a>
+                        <p class="card-text">{{ book.book_description }}</p>
+                        <h6>{{ book.book_price }}₹</h6>
+                        <div class="container" style="display: flex; margin-bottom: auto; ">
+                            <button onclick="add_to_cart({{ book.id }})" class="btn btn-success">
+                                Add To Cart
+                            </button>
+                            <input id="quantity-{{book.id}}" type="number" name="quantity" style="width:60px;"
+                                placeholder="1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

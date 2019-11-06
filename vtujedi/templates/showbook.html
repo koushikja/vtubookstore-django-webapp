@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{ book.book_title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        {% csrf_token %}
+        <a href="/">
+            < back</a> <br />
+            <div class="container">
+                <div class="jumbotron">
+                    <div class="media">
+                        <img src="{{ book.book_img.url }}" class="mr-3" />
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ book.book_title }}</h5>
+                            <p>{{ book.book_description }}</p>
+                            <h6>{{ book.book_price }}₹</h6>
+                            <div class="container"
+                                style="display: flex; margin-bottom: auto; justify-content: space-evenly;">
+                                <button onclick="add_to_cart({{book.id}})" class="btn btn-success">
+                                    Add To Cart
+                                </button>
+                                <input id="quantity-{{book.id}}" type="number" name="quantity" style="width:60px;" placeholder="1"
+                            class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="{% static '/js/index.js' %}"></script>
+</body>
+
+</html>
