@@ -4,5 +4,5 @@ gunicorn==19.9.0
 Pillow==6.2.1
 psycopg2==2.8.4
 pytz==2019.3
-sqlparse==0.3.0
+sqlparse==0.4.4
 whitenoise==4.1.4
